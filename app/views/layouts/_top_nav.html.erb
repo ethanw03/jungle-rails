@@ -61,16 +61,25 @@
             
           </ul>
         </li>
+        <% if current_user%>
         <li>
-        <%= link_to login_path do %>
-          <span class="text-primary">Login&nbsp </span>
-        <%end%>
+        <a><span >Signed in as <%= current_user.first_name %> <%= current_user.last_name%> &nbsp</span></a>
       </li>
       <li>
-        <%= link_to signup_path do %>
-          <span class="text-primary">Signup</span>
-        <%end%>
+        <%= link_to "Logout", logout_path %>
       </li>
+        <% else %>
+          <li>
+            <%= link_to login_path do %>
+              <span class="text-primary">Login&nbsp</span>
+            <%end%>
+          </li>
+          <li>
+            <%= link_to signup_path do %>
+              <span class="text-primary">Signup</span>
+            <%end%>
+          </li>
+        <% end %>
         <li class="nav-item end-0">
           <%= link_to cart_path, class: "nav-link " do %> <%= fa_icon "shopping-cart" %>
           My Cart (<%= cart.size %>) <% end %>
